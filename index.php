@@ -11,6 +11,9 @@ $router->namespace("Controller"); #DEFINICAO DO NAMESPACE
 $router->get("/", "Login:home");
 $router->post("/login", "Login:login");
 
+$router->group("dashboard");
+$router->get("/", "Dashboard:home");
+
 $router->group("error");
 $router->get("/{code}", "Error:home", "error.home");
 

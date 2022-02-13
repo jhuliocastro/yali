@@ -2,8 +2,13 @@
 namespace Controller;
 
 use Models\Login_Model;
+use Alertas\Alert;
 
 class Login extends Controller{
+    public function __construct($router){
+        $this->router = $router;
+    }
+
     public function home(){
         parent::render("login");
     }
@@ -14,10 +19,8 @@ class Login extends Controller{
 
         $retorno = null;
         $model = new Login_Model();
-        var_dump($model);
-        $retornoEmail = $model->find()->fetch(true);
-        var_dump($model);
-        /* if($retornoEmail == 0){
+        $retornoEmail = $model->retornoEmail($dados->usuario);
+        if($retornoEmail == 0){
              $retornoUsuario = $model->retornoUsuario($dados->usuario);
              if ($retornoUsuario > 0){
                  $retorno = "usuario";
@@ -32,9 +35,14 @@ class Login extends Controller{
              $dados = $model->loginUsuario($dados->usuario, $dados->senha);
          }
 
-         var_dump($dados);
+         if(!$dados->id){
+            Alert::error("Dados incorretos!", "Verifique e tente novamente.", "/");
+         }else{
+             session_start();
+             $_SESSION["usuario"] == $dados->id;
+             $this->router->redirect("/dashboard");
+         }
 
-         session_start();
-         $_SESSION["usuario"] == $dados->id;*/
+
     }
 }
