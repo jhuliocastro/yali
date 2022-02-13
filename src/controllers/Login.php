@@ -39,7 +39,7 @@ class Login extends Controller{
             Alert::error("Dados incorretos!", "Verifique e tente novamente.", "/");
          }else{
              session_start();
-             $_SESSION["usuario"] == $dados->id;
+             $_SESSION["usuario"] = $dados->id;
              $this->router->redirect("/dashboard");
          }
 
