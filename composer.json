@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Models\\": "src/models",
+            "Controller\\": "src/controllers"
+        },
+        "files": [
+            "config.php"
+        ]
+    },
+    "require": {
+        "coffeecode/router": "^1.0"
+    }
+}
