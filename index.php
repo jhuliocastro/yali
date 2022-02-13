@@ -9,6 +9,7 @@ $router->namespace("Controller"); #DEFINICAO DO NAMESPACE
 
 //ROTAS
 $router->get("/", "Login:home");
+$router->post("/login", "Login:login");
 
 $router->group("error");
 $router->get("/{code}", "Error:home", "error.home");
@@ -16,5 +17,5 @@ $router->get("/{code}", "Error:home", "error.home");
 $router->dispatch();
 
 if($router->error()){
-    $router->redirect("error.name");
+    $router->redirect("error.home");
 }
